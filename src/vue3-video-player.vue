@@ -86,6 +86,8 @@ export default {
     provide('playerKey', playerKey)
 
     const slots = reactive({})
+    const ins = getCurrentInstance()
+    slots.value = ins.slots ? ins.slots : {}
     return {
       playerKey,
       slots
@@ -130,8 +132,7 @@ export default {
     this.on(EVENTS.GLOBAL_AUTO_PLAY, (status) => {
       this.player.setConfig('autoplay', status)
     })
-    const ins = getCurrentInstance()
-    this.slots = ins.slots ? ins.slots : {}
+   
   },
   mounted () {
     // const self = this
